@@ -51,7 +51,7 @@ main()
  printf("Druhé datum je %d. den v roce.\n\n\n\n",druhe);
 
  if (prvni>druhe) rozdil=prvni-druhe-1;
- else if (prvni=druhe) rozdil=prvni-druhe;
+ else if (prvni==sdruhe) rozdil=prvni-druhe;
  else rozdil=druhe-prvni-1;
 
 

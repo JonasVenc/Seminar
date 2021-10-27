@@ -60,7 +60,7 @@ main()
 
  printf("Mezi oběma daty ulynulo %d dní.",rozdil);
 
- printf("Pokud chcete pokračovat pro další data napište 1 a podvrďte enterem, pokud ne zmáčněte 0 a potvrďte enterem\n");
+ printf("Pokud chcete pokračovat pro další data napište 1 a potvrďte enterem, pokud ne zmáčněte 0 a potvrďte enterem\n");
  scanf("%d", &g);
 
  if (g==1) i=1;

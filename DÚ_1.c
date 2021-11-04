@@ -1,11 +1,12 @@
-//#include <stdio.h>
-//#include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 main()
 {
  int i=1;
- while (i=1)
+ int a,b,c,d,k,l,m,n,g,prvni,druhe,rozdil;
+ while (i==1)
  {
-    int a,b,c,d,k,l,m,n,g,prvni,druhe,rozdil;
+
  //poznamka
  printf("Tento program vypise, klolikate dny v roce jsou zadana dve data a take kolik dni mezi nimi uplynulo");
  printf("Zadej dve existujici data, tedy ctyri cisla, oddelena mezerou ve tvrau napriklad: 1 5 1 6\n");
@@ -61,16 +62,16 @@ main()
  printf("Mezi oběma daty ulynulo %d dní.",rozdil);
 
  printf("Pokud chcete pokračovat pro další data napište 1 a potvrďte enterem, pokud ne zmáčněte 0 a potvrďte enterem\n");
- scanf("%d", &g);
+ //printf("aaaaaaa x%dx\n",g);
+ scanf("%d",&g);
 
- if (g==1) i=1;
- else if (g==0) i=0;
+ if (g==0) break;
  else printf("Zadal/a jste neplatnou hodnotu (musí být 1 nebo 2): %d", g);
 
 
  }
- 
- 
+
+
 
 
  //system("pause");

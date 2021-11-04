@@ -3,17 +3,17 @@
 main()
 {
  int i=1;
- int a,b,c,d,k,l,m,n,g,prvni,druhe,rozdil;
+ int a,b,c,d,m,n,g,p,prvni,druhe,rozdil;
+ printf("Tento program po zadani dvou dat vypise, klolikaty den v roce kazde je a take kolik dni mezi nimi uplynulo\n");
  while (i==1)
  {
 
- //poznamka
- printf("Tento program vypise, klolikate dny v roce jsou zadana dve data a take kolik dni mezi nimi uplynulo");
- printf("Zadej dve existujici data, tedy ctyri cisla, oddelena mezerou ve tvrau napriklad: 1 5 1 6\n");
- printf("Tento priklad vyjadruje: 1. 5. a druhe datum je 1. 6.\n");
+
+ printf("Zadej dve existujici data, tedy ctyri cisla, oddelena enterem ve tvrau napriklad: 1 5 26 6\n");
+ printf("Tento priklad vyjadruje: 1. 5. a druhe datum je 26. 6.\n\n");
  scanf("%d%d%d%d",&a,&b,&c,&d);
- k=30;
- l=31;
+
+
  if (b==1) m=0;
     else if (b==2) m=31;
     else if (b==3) m=59;
@@ -45,34 +45,34 @@ main()
  prvni=a+m;
  druhe=c+n;
 
- // if (a>b) if (a>c) if (b>c) m=b;
- //                    else m=c;
- //             else  m=a;
- //     else if (b>c) if (a>c) m=a;
- //                    else m=c;
- //             else  m=b;
- printf("První datum je %d. den v roce.\n",prvni);
- printf("Druhé datum je %d. den v roce.\n\n\n\n",druhe);
+
+ printf("\nPrvni datum je %d. den v roce.\n",prvni);
+ printf("Druhe datum je %d. den v roce.\n\n",druhe);
+
 
  if (prvni>druhe) rozdil=prvni-druhe-1;
  else if (prvni==druhe) rozdil=prvni-druhe;
  else rozdil=druhe-prvni-1;
 
 
- printf("Mezi oběma daty ulynulo %d dní.",rozdil);
+ printf("Mezi obema daty uplynulo %d dni.\n\n\n\n",rozdil);
 
- printf("Pokud chcete pokračovat pro další data napište 1 a potvrďte enterem, pokud ne zmáčněte 0 a potvrďte enterem\n");
- //printf("aaaaaaa x%dx\n",g);
+
+
+ printf("Pokud chcete pokracovat pro dalsi data napiste 1 a potvrdte enterem, pokud ne zmacknete 0 a potvrdte enterem\n\n");
  scanf("%d",&g);
 
  if (g==0) break;
- else printf("Zadal/a jste neplatnou hodnotu (musí být 1 nebo 2): %d", g);
-
+ else if (g==1) {
+    i=1;
+    printf("\n\n\n");
+    }
+ else {
+    printf("Zadal/a jste neplatnou hodnotu (musi byt 1 nebo 2): %d\n\n\n", g);
+    break;
+    }
 
  }
 
-
-
-
- //system("pause");
+ system("pause");
 }

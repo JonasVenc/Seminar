@@ -1,161 +1,87 @@
 #include <stdio.h>
 #include <math.h>
-
-float y,v,v1,v2,v3;
-float k,e,d,c;
-float p,s,m,h,f,w1,w2,w3,g,g1,g2,g5,g6,g7,i,i1,i2,i3,i4;
-float q,q1,q2,q3,q4;
-
-double exchange(int n)
+#include <string.h>
+#include <stdlib.h>
+main()
 {
-    printf("Vypocty jsou provadeny se zaokrouhlenym kurzem pro 10.02.2022\n");
-    printf("Zadejte cela cisla\n");
-    printf("Chcete smenit koruny? Pokud ano zadejte mnozstvi, pokud ne zadejte 0\n");
-    scanf("%f",&k);
-    if (k==0){
-        printf("Chcete smenit eura? Pokud ano zadejte mnozstvi, pokud ne zadejte 0\n");
-        scanf("%f",&e);
-        if (e==0){
-            printf("Chcete smenit dolary? Pokud ano zadejte mnozstvi, pokud ne zadejte 0\n");
-            scanf("%f",&d);
-            if (d==0){
-                printf("Nebyla prevedena zadna mena\n");
-            }
-        }
-    }
-    if (k!=0){
-        printf("Do jake cilove meny chcete koruny prevest? Zadejte a potvrtte 1 pro eura a 2 pro dolary\n");
-        scanf("%f",&c);
-        if (c==1){
-            k=k/24.34;
-        }
-        else if (c==2){
-            k=k/21.3;
-        }
-        return k;
-    }
-    else if (e!=0){
-        printf("Do jake cilove meny chcete eura prevest? Zadejte a potvrtte 1 pro koruny a 2 pro dolary\n");
-        scanf("%f",&c);
-        if (c==1){
-            e=e*24.34;
-        }
-        else if (c==2){
-            e=e*1.14;
-        }
-        return e;
-    }
-    else if (d!=0){
-        printf("Do jake cilove meny chcete dolary prevest? Zadejte a potvrtte 1 pro koruny a 2 pro eura\n");
-        scanf("%f",&c);
-        if (c==1){
-            d=d*21.3;
-        }
-        else if (c==2){
-            d=d/1.14;
-        }
-        return d;
-    }
-    else {
-        return 0;
+//CONST delka1=20; delka2=40; poc_pre=15;
+typedef struct {
+         int rok1, rok2;
+} DATUM;
+typedef struct {
+         char pre[40]; //predmet
+         char tema[40];
+         DATUM rok; //skolni rok
+         char trida[40];
+} SESIT;
+
+FILE *f1, *p, *f2, *f3; SESIT z; int i,j,s1,s2,je_tam,a;
+int pocpre=15, rok12, rok22; float pr1;
+char prijmeni[20], prijmeni1[20], text_dut[20], t_nic[1]="", predmet[30], nazev[30], tema1[30], trida1[30];
+f1=fopen("sesity.dat","r"); f2=fopen("vyber.dat","wb"); f3=fopen("sesity.dat","a");
+
+printf("Pridani polozky do seznamu(k vyhledavani bude k dispozici az po opetovnem otevreni souboru)\n");
+printf("Zadej nazev predmetu: ");
+gets(nazev); strcat(nazev,"\n");
+fprintf(f3,"%s",nazev);
+printf("Zadej tema sesitu: ");
+gets(tema1); strcat(tema1,"\n");
+fprintf(f3,"%s",tema1);
+printf("Zadej tridu sesitu: ");
+gets(trida1); strcat(trida1,"\n");
+printf("Zadej skolni rok (pouze rok pred /): ");
+scanf("%d",&rok12);
+fprintf(f3,"%d",rok12);
+printf("Zadej skolni rok (pouze rok za /): ");
+scanf("%d",&rok22);
+fprintf(f3," %d",rok22);
+fprintf(f3,"\n%s",trida1);
+printf("");
+gets(nazev); strcat(nazev,"\n");
+fprintf(f3,"");
+
+printf("Zadej predmet, podle ktereho se vyhledaji vechny sesity(napr. Chemie): ");
+gets(predmet); strcat(predmet,"\n"); je_tam=0;
+printf("\n");
+//scanf("%s",prijmeni); tez pro precteni retezce - ale od do bileho znaku
+do {
+    //fscanf(f1,"%s",z.jme);
+    fgets(z.pre,40,f1);
+    fgets(z.tema,40,f1);
+    //fscanf(f1,"%s",z.pri); tez pro precteni retezce ze souboru - ale od do bileho znaku
+    fscanf(f1,"%d%d",&z.rok.rok1,&z.rok.rok2); getc(f1);
+    fgets(z.trida,40,f1);
+    //for (i=1; i<=2; i++) for (j=1; j<=pocpre; j++) fscanf(f1,"%d",&z.zna[i][j]);
+    //fscanf(f1,"%c",&z.dut); getc(f1);
+    if (strcmp(z.pre,predmet)==0) {
+//     if (z.pri==prijmeni) takto porovnat retezce nelze
+       fwrite(&z,sizeof(z),1,f2);
+       //p=fopen("PREDMETY.DAT","r"); s1=0; s2=0;
+       je_tam=1;
+       printf("Tema: %s",z.tema);
+       printf("Skolni rok: %d/%d\n",z.rok.rok1,z.rok.rok2);
+       printf("Trida: %s",z.trida);
+       printf("\n");
+       /*for (i=1; i<=pocpre; i++) {
+         fgets(predmet,30,p);
+         printf("%s %d %d\n",predmet,z.zna[1][i],z.zna[2][i]);
+         s1+=z.zna[1][i]; s2+=z.zna[2][i];
+       } fclose(p); strcpy(text_dut,t_nic);
+       switch (z.dut) {
+          case 'N' : strcat(text_dut,"napomenuti tridniho"); break;
+          case 'T' : strcat(text_dut,"tridni dutka"); break;
+          case 'R' : strcat(text_dut,"reditelska dutka"); break;
+          case 'V' : strcat(text_dut,"podminecne vylouceni"); break;
+          case 'P' : strcat(text_dut,"pochvala tridniho"); break;
+          case 'Q' : strcat(text_dut,"pochvala reditele"); break;
+          default  : strcat(text_dut,"bez poznamek");
+       }
+       pr1=double(s1)/pocpre;
+       printf("Prumery : %4.2f %4.2f\n",pr1,float(s2)/pocpre);
+       printf("%s\n",text_dut);*/
     }
 }
-
-double feeexhange(float n, float p){
-    v=p/100;
-    v1=v*n;
-    v2=n-v1;
-    return v2;
-}
-
-double sporeni(float n, float m, float h){
-    w1=n/100*h;
-    w2=w1*m;
-    w3=h+w2;
-    return w3;
-}
-
-double dobasplatek(float c, float u, float m){
-    g5=u/100*c;
-    g6=c+g5;
-    g7=g6/m;
-    return g7;
-}
-
-double inflace(float i, float c, float l){
-    i3=i/100*c;
-    i4=i3*l;
-    return i4;
-}
-
-double prevod(float p, float h, float v){
-    q3=p*h;
-    q4=q3/v;
-    return q4;
-}
-
-
-
-main(){
- int a,b,n; char x;
- printf("Je mozne provest tyto financni operace:\n1...pripocitani poplatku ke smene\n2...smena meny s poplakem\n3...vypocet uroku na sporicim uctu\n4...vypocet doby splaceni pujcky\n5...vypocet ztraty hodnoty diky inflaci\n6...prevod urciteho poctu hodnot na jinou hodnotu (napriklad prevod 45 dvacetikorun na dvoukoruny)\n");
- while (x!='n'){
-    //printf("Tvuj zustatek korun: %d\n", k);
-    //printf("Tvuj zustatek eur: %d\n", e);
-    printf("\nZadej cislo financni operace:\n");
-    scanf("%d",&a);
-
-    if  (a==1){
-        y=exchange(1);
-        printf("Vysledna castka je: %f\n", y);
-    }
-    else if (a==2){
-        printf("Jaka je vyse poplatku, napriklad 1 procento ... 1\n");
-        scanf("%f",&v3);
-        y=feeexhange(exchange(1),v3);
-        printf("Vysledna castka je: %f\n", y);
-    }
-    else if (a==3){
-        printf("Jaky je sporici urok za mesic? Zadej ve tvaru napriklad 2 procenta ... 2\n");
-        scanf("%f",&s);
-        printf("Kolik mesicu se bude urocit?\n");
-        scanf("%f",&m);
-        printf("Jaka je hodnota urocene castky?\n");
-        scanf("%f",&h);
-        f=sporeni(s,m,h);
-        printf("\nCelkovy zustatek po %f mesicich je: %f\n", m, f);
-    }
-    else if (a==4){
-        printf("Pujcena castka:\n");
-        scanf("%f",&g);
-        printf("Jaky je urok pujcky? Zadej ve tvaru napriklad 2 procenta ... 2\n");
-        scanf("%f",&g1);
-        printf("Jaka je vyse mesicni splatky?\n");
-        scanf("%f",&g2);
-        printf("\nTuto pujcku by se za techto podminek spacelo: %f\n", dobasplatek(g,g1,g2));
-    }
-    else if (a==5){
-        printf("Zadej hodnotu rocni inflace, napriklad pro 4 procenta ... 4\n");
-        scanf("%f",&i);
-        printf("Zadej castku pro vypocet\n");
-        scanf("%f",&i1);
-        printf("Zadej pocet let\n");
-        scanf("%f",&i2);
-        printf("\nVlastni hodnota castky %f by za %f let ztratila %f ze sve hodnoty", i1, i2, inflace(i,i1,i2));
-        printf("\nHodnota %f by tedy za %f let byla %f", i1, i2, i1-inflace(i,i1,i2));
-    }
-    else if (a==6){
-        printf("Zadej pocet prvnich hodnot\n");
-        scanf("%f",&q);
-        printf("Zadej prvni hodnotu\n");
-        scanf("%f",&q1);
-        printf("Zadej druhou (vyslednou) hodnotu\n");
-        scanf("%f",&q2);
-        printf("%f minci s hodnotou %f lze rozmenit na %f s hodnotou %f\n", q, q1, prevod(q,q1,q2), q2);
-        printf("Celkova hodnota techto minci je: %f\n", q*q1);
-    }
-
-    printf("\nPokracovat? (a/n) ");
-    x=getchar(); x=getchar();
-  }
+while (!feof(f1)); fclose(f1); fclose(f2);
+if (!je_tam) {printf("Predmet %s nenalezen\n",predmet);}
+//system ("pause");
 }

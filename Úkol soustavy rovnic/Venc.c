@@ -23,10 +23,10 @@ main()
  }
 
  if (zadani==1) {
-    printf("Zadejte pocet rovnic\n");
+    printf("Zadejte pocet radku\n");
     scanf("%d", &radky);
 
-    int hodnoty[radky+2][radky+1];
+    float hodnoty[radky+2][radky+1];
     int nahodny=-1;
 
     while (nahodny<0 || nahodny>1) {
@@ -36,7 +36,7 @@ main()
 
     if (nahodny==0) {
 
-    printf("Zadejte %d rovnice:\n", radky);
+    printf("Zadejte jedotlive radky (%d) vcetne pravych stran:\n", radky);
 
     int j;
     int k;
@@ -64,28 +64,35 @@ main()
         for (l=1; l<=radky; l++) {
                 for (m=1; m<=radky+1; m++) {
                     hodnoty[m][l]=(rand()%(maximum-minimum+1))+minimum;
+                    printf("%4.2f", hodnoty[m][l]);
                 }
         }
     }
+ }
 
  if (zadani==2) {
 
- printf("Zadejte nazev pocatecniho souboru pro cetni\n");
+ printf("Zadejte nazev pocatecniho souboru pro cteni\n");
  scanf ("%s", &inputname);
 
  f1=fopen(inputname,"r");
 
+ radky = 0;
+
  while (fscanf(f1,"%d",&a)==1) {
     radky++;
  }
+ printf("%d\n", radky);
 
  radky = (-1+sqrt(1+4*radky))/2;
+
+ printf("%d\n", radky);
 
  fclose(f1);
  f1=fopen(inputname,"r");
 
  float hodnoty[radky+2][radky+1];
- int soubor[radky+1];
+ float soubor[radky+1];
  int i=1;
 
  while (fscanf(f1,"%d",&a)==1) {
@@ -101,5 +108,8 @@ main()
         for (p=1; p<=radky+1; p++) {
                 hodnoty[p][o] = soubor[i];
                 i++;
+                printf("%4.2f ", hodnoty[p][o]);
         }
+    }
  }
+}

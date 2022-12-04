@@ -70,10 +70,15 @@ main()
         int l;
         int m;
         srand(time(0));
+
+        printf("Vygenerovana soustava je:\n");
+
         for (l=1; l<=radky; l++) {
                 for (m=1; m<=radky+1; m++) {
                     hodnoty[m][l]=(rand()%(maximum-minimum+1))+minimum;
+                    printf("%f ", hodnoty[m][l]);
                 }
+                printf("\n");
         }
     }
 
@@ -93,9 +98,11 @@ for(int j=radky;j>1;j--){
     hodnoty[radky+1][r]=hodnoty[radky+1][r]-hodnoty[j][r]*hodnoty[radky+1][j];
     }
 }
-printf("Hodnoty neznamych jsou:");
+
+
 for(int r=1;r<radky+1;r++){
 printf(" %4.2f",hodnoty[radky+1][r]);
+printf("%d. promenna: %4.2f", r, hodnoty[radky+1][r]);
 }
 }
 
@@ -123,7 +130,7 @@ printf(" %4.2f",hodnoty[radky+1][r]);
 ////
 
             float vysledek = determinant(polex)/determinant(hodnoty);
-            printf ("\nPrvni promenna: %f", vysledek);
+            printf ("\n1. promenna: %f", vysledek);
 
 
             for (int l=1; l<=radky; l++) {
@@ -136,7 +143,7 @@ printf(" %4.2f",hodnoty[radky+1][r]);
 
 
             vysledek = determinant(polex)/determinant(hodnoty);
-            printf ("\nDruha promenna: %f", vysledek);
+            printf ("\n2. promenna: %f", vysledek);
 
             for (int l=1; l<=radky; l++) {
                 polex[2][l]=hodnoty[2][l];
@@ -147,7 +154,7 @@ printf(" %4.2f",hodnoty[radky+1][r]);
             }
 
             vysledek = determinant(polex)/determinant(hodnoty);
-            printf ("\nTreti promenna: %f", vysledek);
+            printf ("\n3. promenna: %f", vysledek);
     }
 
 
@@ -205,9 +212,8 @@ for(int j=radky;j>1;j--){
     hodnoty[radky+1][r]=hodnoty[radky+1][r]-hodnoty[j][r]*hodnoty[radky+1][j];
     }
 }
-printf("Hodnoty neznamych jsou:");
 for(int r=1;r<radky+1;r++){
-printf(" %4.2f",hodnoty[radky+1][r]);
+printf("%d. promenna: %4.2f\n", r, hodnoty[radky+1][r]);
 }
 }
 
@@ -234,7 +240,7 @@ printf(" %4.2f",hodnoty[radky+1][r]);
 ////
 
             float vysledek = determinant(polex)/determinant(hodnoty);
-            printf ("\nPrvni promenna: %f", vysledek);
+            printf ("\n1. promenna: %f", vysledek);
 
 
             for (int l=1; l<=radky; l++) {
@@ -247,7 +253,7 @@ printf(" %4.2f",hodnoty[radky+1][r]);
 
 
             vysledek = determinant(polex)/determinant(hodnoty);
-            printf ("\nDruha promenna: %f", vysledek);
+            printf ("\n2. promenna: %f", vysledek);
 
             for (int l=1; l<=radky; l++) {
                 polex[2][l]=hodnoty[2][l];
@@ -258,7 +264,7 @@ printf(" %4.2f",hodnoty[radky+1][r]);
             }
 
             vysledek = determinant(polex)/determinant(hodnoty);
-            printf ("\nTreti promenna: %f", vysledek);
+            printf ("\n3. promenna: %f", vysledek);
      }
  }
 }

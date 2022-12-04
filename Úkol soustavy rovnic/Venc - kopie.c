@@ -52,7 +52,7 @@ main()
 
     for (j=1; j<radky+1; j++) {
             for (k=1; k<radky+2; k++) {
-                scanf("%f", &hodnoty[k][j]);
+                scanf("%d", &hodnoty[k][j]);
             }
     }
 
@@ -73,32 +73,11 @@ main()
         for (l=1; l<=radky; l++) {
                 for (m=1; m<=radky+1; m++) {
                     hodnoty[m][l]=(rand()%(maximum-minimum+1))+minimum;
+                    printf("%4.2f ", hodnoty[m][l]);
                 }
+                printf("\n");
         }
     }
-
-    if (metoda==1){
-for(int k=1;k<radky+1;k++){
-    for(int r=radky+1;r>k-1;r--){
-        hodnoty[r][k]=hodnoty[r][k]/hodnoty[k][k];
-    }
-    for(int j=1+k;j<radky+1;j++){
-        for(int r=radky+1;r>k-1;r--){
-            hodnoty[r][j]=hodnoty[r][j]-hodnoty[r][k]*hodnoty[k][j];
-        }
-    }
-}
-for(int j=radky;j>1;j--){
-    for(int r=j-1;r>0;r--){
-    hodnoty[radky+1][r]=hodnoty[radky+1][r]-hodnoty[j][r]*hodnoty[radky+1][j];
-    }
-}
-printf("Hodnoty neznamych jsou:");
-for(int r=1;r<radky+1;r++){
-printf(" %4.2f",hodnoty[radky+1][r]);
-}
-}
-
 
 
     if (metoda==2) {
@@ -118,7 +97,9 @@ printf(" %4.2f",hodnoty[radky+1][r]);
 ////
             for (int l=1; l<=radky; l++) {
                 for (int m=1; m<=radky+1; m++) {
+                    printf("%4.2f ", polex[m][l]);
                 }
+                printf("\n");
             }
 ////
 
@@ -165,8 +146,11 @@ printf(" %4.2f",hodnoty[radky+1][r]);
  while (fscanf(f1,"%d",&a)==1) {
     radky++;
  }
+ printf("%d\n", radky);
 
  radky = (-1+sqrt(1+4*radky))/2;
+
+ printf("%d\n", radky);
 
  fclose(f1);
  f1=fopen(inputname,"r");
@@ -180,37 +164,31 @@ printf(" %4.2f",hodnoty[radky+1][r]);
         i++;
  }
 
-int n=i-1;
- for (int l=radky; l>0; l--) {
-                for (int m=radky+1; m>0; m--) {
-                        hodnoty[m][l] = soubor[n];
-                n--;
-                }
+
+
+ int o;
+ int p;
+ i = 1;
+
+printf("\n%f\n", soubor[10]);
+
+ for (o=1; o<radky+1; o++) {
+        printf("\n%f\n", soubor[10]);
+        for (p=1; p<radky+2; p++) {
+                printf("\n%f\nxxx", soubor[10]);
+                hodnoty[p][o] = soubor[i];
+                for (int l=1; l<=50; l++) {
+    printf("%f\n", soubor[l]);
  }
-
-
-    if (metoda==1){
-for(int k=1;k<radky+1;k++){
-    for(int r=radky+1;r>k-1;r--){
-        hodnoty[r][k]=hodnoty[r][k]/hodnoty[k][k];
-    }
-    for(int j=1+k;j<radky+1;j++){
-        for(int r=radky+1;r>k-1;r--){
-            hodnoty[r][j]=hodnoty[r][j]-hodnoty[r][k]*hodnoty[k][j];
+                i++;
+                printf("\n%f\n", soubor[10]);
+                printf("%4.2f ", hodnoty[p][o]);
+                printf("%f ", soubor[i]);
         }
+        printf("\n%f\n", soubor[10]);
+        printf("\n");
+        printf("\n%f\n", soubor[10]);
     }
-}
-for(int j=radky;j>1;j--){
-    for(int r=j-1;r>0;r--){
-    hodnoty[radky+1][r]=hodnoty[radky+1][r]-hodnoty[j][r]*hodnoty[radky+1][j];
-    }
-}
-printf("Hodnoty neznamych jsou:");
-for(int r=1;r<radky+1;r++){
-printf(" %4.2f",hodnoty[radky+1][r]);
-}
-}
-
 
      if (metoda==2) {
 
@@ -229,11 +207,14 @@ printf(" %4.2f",hodnoty[radky+1][r]);
 ////
             for (int l=1; l<=radky; l++) {
                 for (int m=1; m<=radky+1; m++) {
+                    printf("\n%4.2f ", polex[m][l]);
                 }
+                printf("\n");
             }
 ////
 
             float vysledek = determinant(polex)/determinant(hodnoty);
+            printf("%f\n%f", determinant(polex), determinant(hodnoty));
             printf ("\nPrvni promenna: %f", vysledek);
 
 
